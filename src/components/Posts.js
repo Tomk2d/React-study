@@ -9,6 +9,8 @@ function Posts(){
             .then(json => setPosts(json));
     },[]);
 
+    
+
     const updatePost = (index, content) => {
         // 수정 버튼 클릭 시 실행되는 함수
         setPosts((prevPosts) => {
@@ -27,10 +29,23 @@ function Posts(){
         });
     };
 
+    const addPost = (headline, text)=>{
+        setPosts((prevPost)=>[
+            {
+                userId : 1,
+                id : 0,
+                title : headline,
+                body : text
+            },
+            ...prevPost,
+        ]);
+        console.log(posts)
+    }
+
     return (
         <div>
             <h1 style={{margin : '40px'}}>게시글</h1>
-            <button>게시글 작성</button>
+            <button onClick={()=> addPost(prompt("헤드라인을 작성하세요."),prompt("게시글 내용을 작성하세요."))}>게시글 작성</button>
             <ul style={{listStyleType: "none"}}>
                 {posts.map((post, index) =>(
                     <li key={post.id} style={{padding :'10px',margin:'10px', border : '3px solid black'}}>
