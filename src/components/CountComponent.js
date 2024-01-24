@@ -1,11 +1,15 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useCallback} from "react";
 
 export default function CountComponent(){
     const [count, setCount] = useState(0)
 
+    /*
     const addCount = ()=>{
         setCount(count+1);
-    }
+    }*/
+
+    const addCount = useCallback((count)=>{
+        setCount(count+1)},[setCount]);
 
     useEffect(()=>{
         console.log("데이터 받아오기! (이 함수는 한번만 실행됩니다.)");
